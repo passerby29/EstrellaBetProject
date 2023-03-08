@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "test_international")
-data class InternationalEntity(
+@Entity(tableName = "test_world")
+data class WorldEntity(
     @PrimaryKey
     @ColumnInfo(name = "id") val mId: Int,
     @ColumnInfo(name = "question") val mQuestion: String?,
