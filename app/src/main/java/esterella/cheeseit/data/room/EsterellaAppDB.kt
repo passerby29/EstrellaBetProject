@@ -6,23 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [InternationalEntity::class], exportSchema = false, version = 1)
-abstract class EsterellaAppDB: RoomDatabase() {
+abstract class EsterellaAppDB : RoomDatabase() {
 
     abstract fun getInternationalDao(): InternationalDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: EsterellaAppDB? = null
         fun getDB(context: Context): EsterellaAppDB {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    EsterellaAppDB::class.java,
-                    "esterella_database"
-                ).fallbackToDestructiveMigration().build()
-                INSTANCE = instance
-                instance
-            }
+            return Room.databaseBuilder(
+                context,
+                EsterellaAppDB::class.java,
+                "esterella-database"
+            ).createFromAsset("databases/estrella.db")
+                .fallbackToDestructiveMigration()
+                .build()
         }
     }
 }
