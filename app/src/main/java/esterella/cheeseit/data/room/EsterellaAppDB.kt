@@ -8,6 +8,8 @@ import androidx.room.RoomDatabase
 @Database(entities = [InternationalEntity::class], exportSchema = false, version = 1)
 abstract class EsterellaAppDB: RoomDatabase() {
 
+    abstract fun getInternationalDao(): InternationalDao
+
     companion object {
         @Volatile
         private var INSTANCE: EsterellaAppDB? = null
