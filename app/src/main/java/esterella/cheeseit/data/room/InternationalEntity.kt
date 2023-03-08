@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class InternationalEntity(
     @PrimaryKey
     @ColumnInfo(name = "id") val mId: Int,
-    @ColumnInfo(name = "question") val mQuestion: Int,
-    @ColumnInfo(name = "answer") val mAnswer: Int,
-    @ColumnInfo(name = "result") val mResult: Int,
+    @ColumnInfo(name = "question") val mQuestion: String?,
+    @ColumnInfo(name = "answer") val mAnswer: String?,
+    @ColumnInfo(name = "result") val mResult: Int?,
 )
