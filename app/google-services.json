@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "175262027528",
+    "project_id": "estbt-bb2e0",
+    "storage_bucket": "estbt-bb2e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175262027528:android:891f1e7bbdf6e564b3e6bd",
+        "android_client_info": {
+          "package_name": "esterella.cheeseit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175262027528-2k1i93nvan1bnjnjh0ve79longijjgrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuGNgTJvP39nM-fWi3kGDXfdy_tz91SlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175262027528-2k1i93nvan1bnjnjh0ve79longijjgrr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
