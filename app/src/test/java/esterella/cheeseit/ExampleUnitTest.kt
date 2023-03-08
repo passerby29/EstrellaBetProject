@@ -1,4 +1,4 @@
-package dev.passerby
+package esterella.cheeseit
 
 import org.junit.Test
 
