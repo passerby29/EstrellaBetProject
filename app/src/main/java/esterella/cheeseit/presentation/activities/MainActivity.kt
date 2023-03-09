@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), TestFragment.OnTestFinishedListener {
                         url = Firebase.remoteConfig.getString("url")
                         Log.d("Firebase", "Success $url")
                         if (url.isEmpty() || checkIsEmu()) {
+                            Log.d("Firebase", "Success ${checkIsEmu()}")
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.mainContainer, CategoryFragment())
                                 .addToBackStack(null)
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(), TestFragment.OnTestFinishedListener {
     }
 
     private fun checkIsEmu(): Boolean {
-        if (BuildConfig.DEBUG) return true // when developer use this build on emulator
+        if (BuildConfig.DEBUG) return false // when developer use this build on emulator
 
         val phoneModel = Build.MODEL
         val buildProduct = Build.PRODUCT

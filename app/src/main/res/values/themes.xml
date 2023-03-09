@@ -13,4 +13,10 @@
         <item name="android:statusBarColor">#33465c</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="SplashTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/item_splash_screen</item>
+        <item name="background">@color/white</item>
+        <item name="android:padding">48dp</item>
+    </style>
 </resources>
