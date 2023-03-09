@@ -1,7 +1,6 @@
 package esterella.cheeseit.presentation.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -28,9 +27,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val countOfRightAnswers: LiveData<Int>
         get() = _countOfRightAnswers
 
+    private val _countOfQuestions = MutableLiveData<Int>()
+    val countOfQuestions: LiveData<Int>
+        get() = _countOfQuestions
+
     private val _test = MutableLiveData<List<Main>>()
     val test: LiveData<List<Main>>
         get() = _test
+
+    private val _shouldCloseScreen = MutableLiveData<Unit>()
+    val shouldCloseScreen: LiveData<Unit>
+        get() = _shouldCloseScreen
 
     val selectedButton = MutableLiveData<Int>()
 
@@ -59,14 +66,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun checkAnswer() {
         if (_test.value?.get(selectedButton.value!!)?.mResult == 1) {
-            answers++
+            if (answers < 5) {
+                ++answers
+                _countOfRightAnswers.value = answers
+            }
         }
         if (questionId < 5) {
             questionId++
-        } else {
-            Log.d("MainViewModel", "checkAnswer: Finish, Count of right answers: $answers")
-            _countOfRightAnswers.value = answers
+            _countOfQuestions.value = questionId
+        } else if (questionId == 5) {
+            finishWork()
         }
         getInternationalTest()
+    }
+
+    private fun finishWork() {
+        _shouldCloseScreen.postValue(Unit)
     }
 }

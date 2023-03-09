@@ -1,5 +1,6 @@
 package esterella.cheeseit.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,18 @@ class TestFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private var category: String? = CATEGORY_UNKNOWN
+    private var answers: String = "Correct 0/5"
+    private var questions: String = "Question 1/5"
+    private lateinit var onTesFinishedListener: OnTestFinishedListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnTestFinishedListener) {
+            onTesFinishedListener = context
+        } else {
+            throw RuntimeException("Activity  must implement OnTestFinishedListener")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +47,22 @@ class TestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         launchRightTest()
+        binding.answersTv.text = answers
+        binding.questionsTv.text = questions
         viewModel.test.observe(viewLifecycleOwner) {
             binding.textViewMain.text = it[0].mQuestion
             initButtons(it)
+        }
+        viewModel.countOfRightAnswers.observe(viewLifecycleOwner) {
+            answers = "Correct $it/5"
+            binding.answersTv.text = answers
+        }
+        viewModel.countOfQuestions.observe(viewLifecycleOwner) {
+            questions = "Question $it/5"
+            binding.questionsTv.text = questions
+        }
+        viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
+            onTesFinishedListener.onTestFinished(answers)
         }
     }
 
@@ -118,5 +144,9 @@ class TestFragment : Fragment() {
                 }
             }
         }
+    }
+
+    interface OnTestFinishedListener {
+        fun onTestFinished(result: String) {}
     }
 }
