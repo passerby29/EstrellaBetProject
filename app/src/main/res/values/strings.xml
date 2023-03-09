@@ -7,4 +7,6 @@
     <string name="europe">Europe</string>
     <string name="english_premiere_league">English Premiere League</string>
     <string name="world">World</string>
+    <string name="error">Error</string>
+    <string name="no_internet_connection">No internet connection. Check your WI-FI or mobile network settings.</string>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import esterella.cheeseit.R
 import esterella.cheeseit.databinding.FragmentCategoryBinding
@@ -27,6 +28,16 @@ class CategoryFragment : Fragment() {
         binding.button2.setOnClickListener { openTest(TestFragment.CATEGORY_EUROPE) }
         binding.button3.setOnClickListener { openTest(TestFragment.CATEGORY_EPL) }
         binding.button4.setOnClickListener { openTest(TestFragment.CATEGORY_WORLD) }
+        setOnBackPressedDispatcher()
+    }
+
+    private fun setOnBackPressedDispatcher() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+        }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 
     private fun openTest(category: String) {
